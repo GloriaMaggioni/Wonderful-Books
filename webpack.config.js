@@ -3,13 +3,18 @@
 
  module.exports = {
     entry:{
-        app: './src/index.js'
+        app: './src/js/index.js'
     },
     output:{
         path: path.resolve(__dirname, 'dist'),
         filename: 'app.js'
     },
-    module:{},
+    module:{ rules:[
+        {
+            test: /\.css$/i,
+            use: ['style-loader', 'css-loader']
+        }
+    ]},
     plugins:[
         new HtmlWebpackPlugin({
             title: 'Wonderful Books',
