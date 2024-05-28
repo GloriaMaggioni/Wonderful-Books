@@ -4,10 +4,20 @@
     box-sizing: border-box;
 
 }
+.homePage-container {
+    border: 1px solid red;
+    align-items: center;
+}
 
-.homePage-title{
+.homePage-container .homePage-title{
+    border: 1px solid black;
+    width: fit-content;
     text-align: center;
     font-family: "Iknut Antiqua , sans-serif";
     font-weight: 'regular';
     font-size: 50px;
+}
+
+.homePage-container .homePage-search{
+    border: 1px solid green;
 }

@@ -14,20 +14,11 @@ const createDomElement = (tag, classes, content) =>{
 
 }
 
-// let homePageTitle = createTitle();
-
-
-// function createTitle() {
-//     let homePageTitle = createDomElement('h1', ['homePage-title'], 'Wonderful Books');
-//     homePageTitle.style.fontFamily = "Iknut Antiqua";
-//     homePageTitle.style.fontWeight = 'regular';
-//     homePageTitle.style.fontSize = '30px';
-//     homePageTitle.style.textAlign = 'center';
-//     // homePageTitle.style.color = 'red';
-//     return homePageTitle;
-// }
-// document.body.appendChild(homePageTitle);
-
+const homePage = createDomElement('div', ['homePage-container'], '');
+document.body.appendChild(homePage);
 
 const homePageTitle = createDomElement('h1', ['homePage-title'], 'Wonderful Books');
-document.body.appendChild(homePageTitle);
+homePage.appendChild(homePageTitle);
+
+const homePageSearch = createDomElement( 'input', ['homePage-search'], 'Search');
+homePage.appendChild(homePageSearch);
