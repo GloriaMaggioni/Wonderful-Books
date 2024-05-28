@@ -116,7 +116,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/style.css */ \"./src/css/style.css\");\n// file  entry point del progetto\r\n\r\n\r\n\r\n\r\n// crearela HOME PAGE\r\n\r\n\r\nconst homePageTitle = document.createElement('h1');\r\nhomePageTitle.textContent = \"Wonderful Books\";\r\nhomePageTitle.style.fontFamily = \"Iknut Antiqua\";\r\nhomePageTitle.style.fontSize = '50px';\r\nhomePageTitle.style.textAlign = 'center';\r\ndocument.body.appendChild(homePageTitle);\n\n//# sourceURL=webpack://wonderful-books/./src/js/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/style.css */ \"./src/css/style.css\");\n// file  entry point del progetto\r\n\r\n\r\n\r\n\r\n// creare la HOME PAGE\r\n\r\n\r\nconst homePageTitle = document.createElement('h1');\r\nhomePageTitle.textContent = \"Wonderful Books\";\r\nhomePageTitle.style.fontFamily = \"Iknut Antiqua\";\r\nhomePageTitle.style.fontWeight= 'regular';\r\nhomePageTitle.style.fontSize = '50px';\r\nhomePageTitle.style.textAlign = 'center';\r\ndocument.body.appendChild(homePageTitle);\n\n//# sourceURL=webpack://wonderful-books/./src/js/index.js?");
 
 /***/ })
 
