@@ -4,3 +4,10 @@
     box-sizing: border-box;
 
 }
+
+.homePage-title{
+    text-align: center;
+    font-family: "Iknut Antiqua , sans-serif";
+    font-weight: 'regular';
+    font-size: 50px;
+}
