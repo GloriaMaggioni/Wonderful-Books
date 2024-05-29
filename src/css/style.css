@@ -19,17 +19,23 @@
 }
 
 .homePage-container .homePage-title{
-    border: 1px solid black;
-   /* text-align: center; */
+    /* border: 1px solid black; */
     font-family: "Iknut Antiqua , sans-serif";
-    font-weight: 'regular';
+    font-weight:400;
     font-size: 50px;
 }
 
 .homePage-container .homePage-search{
     border: 1px solid green;
-    width: 60%;
-    height: 30px;
-    /* border-radius: 50px; */
+    width: 50%;
+    height: 35px;
+    border-radius: 50px;
     
+}
+
+.homePage-container .homePage-button{
+    border: 1px solid red;
+     width: 100px;
+    height: 30px;
+    margin-top: 20px;
 }
