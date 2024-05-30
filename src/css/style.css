@@ -5,8 +5,6 @@
 
 }
 .homePage-container {
-    /* border: 1px solid red; */
-    /* width: 80%; */
      margin: auto;
      text-align: center; 
      margin-top: 40vh;
@@ -19,25 +17,35 @@
 }
 
 .homePage-container .homePage-title{
-    /* border: 1px solid black; */
     font-family: "Iknut Antiqua , sans-serif";
     font-weight: 400;
     font-size: 50px;
 }
 
 .homePage-container .homePage-search{
-    /* border: 1px solid green; */
     width: 40%;
     height: 35px;
-    border: 1px solid gray;
+    border: 1px solid gray; 
+    /* da sistemare il bordo */
     border-radius: 50px;
     margin-top: 20px;
     
 }
 
 .homePage-container .homePage-button{
-    border: 1px solid red;
      width: 100px;
-    height: 30px;
+    height: 32px;
     margin-top: 30px;
+    border-radius: 6px;
+    border-color: gray;
+    font-size: 15px;
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.homePage-button:hover{
+    color: #ffffff;
+    background-color: #000000;
 }

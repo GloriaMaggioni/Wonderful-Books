@@ -14,7 +14,7 @@ const createDomElement = (tag, classes, content) =>{
 
 }
 
-homePage();
+
 
 function homePage() {
     const homePage = createDomElement('div', ['homePage-container'], '');
@@ -26,3 +26,5 @@ function homePage() {
     const homePageButton = createDomElement('button', ['homePage-button'], 'Search');
     homePage.append(homePageTitle,homePageSearch,homePageButton);
 }
+homePage(); 
+
