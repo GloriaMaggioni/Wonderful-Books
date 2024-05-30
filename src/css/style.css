@@ -5,7 +5,7 @@
 
 }
 .homePage-container {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     /* width: 80%; */
      margin: auto;
      text-align: center; 
@@ -21,15 +21,17 @@
 .homePage-container .homePage-title{
     /* border: 1px solid black; */
     font-family: "Iknut Antiqua , sans-serif";
-    font-weight:400;
+    font-weight: 400;
     font-size: 50px;
 }
 
 .homePage-container .homePage-search{
-    border: 1px solid green;
-    width: 50%;
+    /* border: 1px solid green; */
+    width: 40%;
     height: 35px;
+    border: 1px solid gray;
     border-radius: 50px;
+    margin-top: 20px;
     
 }
 
@@ -37,5 +39,5 @@
     border: 1px solid red;
      width: 100px;
     height: 30px;
-    margin-top: 20px;
+    margin-top: 30px;
 }

@@ -14,14 +14,15 @@ const createDomElement = (tag, classes, content) =>{
 
 }
 
-const homePage = createDomElement('div', ['homePage-container'], '');
-document.body.appendChild(homePage);
+homePage();
 
-const homePageTitle = createDomElement('h1', ['homePage-title'], 'Wonderful Books');
-homePage.appendChild(homePageTitle);
+function homePage() {
+    const homePage = createDomElement('div', ['homePage-container'], '');
+    document.body.appendChild(homePage);
 
-const homePageSearch = createDomElement( 'input', ['homePage-search'], ' ');
-homePage.appendChild(homePageSearch);
-
-const homePageButton = createDomElement('button', ['homePage-button'], 'Search');
-homePage.appendChild(homePageButton);
+    const homePageTitle = createDomElement('h1', ['homePage-title'], 'Wonderful Books');
+    const homePageSearch = createDomElement('input', ['homePage-search'], ' ');
+    homePageSearch.placeholder = 'Search your books..'
+    const homePageButton = createDomElement('button', ['homePage-button'], 'Search');
+    homePage.append(homePageTitle,homePageSearch,homePageButton);
+}
