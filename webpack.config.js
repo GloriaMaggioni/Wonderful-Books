@@ -18,8 +18,15 @@
     plugins:[
         new HtmlWebpackPlugin({
             title: 'Wonderful Books',
-            template: './src/index.html'
-        })
+            template: './src/index.html',
+
+            title: ' Ciao belli',
+            template: './src/ciao.hmtl'
+        }),
+        // new HtmlWebpackPlugin({
+        //     title: 'Wonderful Books2',
+        //     template: './src/newPage.html'
+        // })
     ],
     devServer:{
         port: 5000,

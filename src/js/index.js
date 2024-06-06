@@ -3,7 +3,7 @@ import '../css/style.css';
 
 
 
-// creare la HOME PAGE
+
 
 
 const createDomElement = (tag, classes, content) =>{
@@ -13,18 +13,36 @@ const createDomElement = (tag, classes, content) =>{
     return el;
 
 }
+// creare la HOME PAGE
 
-
-
-function homePage() {
     const homePage = createDomElement('div', ['homePage-container'], '');
     document.body.appendChild(homePage);
 
     const homePageTitle = createDomElement('h1', ['homePage-title'], 'Wonderful Books');
     const homePageSearch = createDomElement('input', ['homePage-search'], ' ');
-    homePageSearch.placeholder = 'Search your books..'
+    homePageSearch.placeholder = 'Search your books...'
     const homePageButton = createDomElement('button', ['homePage-button'], 'Search');
     homePage.append(homePageTitle,homePageSearch,homePageButton);
-}
-homePage(); 
 
+
+
+
+// contenitore per la cover dei libri
+
+const booksCover = createDomElement('div', ['booksCover-container'], '');
+document.body.appendChild(booksCover)
+
+
+// richiesta al server
+
+
+// fetch("http://openlibrary.org")
+// .then(response =>{
+//     console.log(response)
+// })
+// .catch(error=> console.log(TypeError(error)))
+
+
+homePageButton.addEventListener('click', () => {
+  window.open('newPage.html')
+})
