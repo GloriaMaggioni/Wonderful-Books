@@ -3,7 +3,8 @@
 
  module.exports = {
     entry:{
-        app: './src/js/index.js'
+        app: './src/js/index.js',
+        // seconPage: './src/newPage.js'
     },
     output:{
         path: path.resolve(__dirname, 'dist'),
@@ -19,14 +20,7 @@
         new HtmlWebpackPlugin({
             title: 'Wonderful Books',
             template: './src/index.html',
-
-            title: ' Ciao belli',
-            template: './src/ciao.hmtl'
         }),
-        // new HtmlWebpackPlugin({
-        //     title: 'Wonderful Books2',
-        //     template: './src/newPage.html'
-        // })
     ],
     devServer:{
         port: 5000,
