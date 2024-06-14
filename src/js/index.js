@@ -1,13 +1,14 @@
 // file  entry point del progetto
 import '../css/style.css';
-import '../newPage.js';
+// import '../newPage.js';
 
 
 
 
 
 
-const createDomElement = (tag, classes, content) =>{
+
+ const createDomElement = (tag, classes, content) =>{
     const el = document.createElement(tag);
     classes.forEach( e => el.classList.add(e));
     el.innerHTML = content;
@@ -28,10 +29,18 @@ const createDomElement = (tag, classes, content) =>{
 
 
 
+
 // contenitore per la cover dei libri
 
-const booksCover = createDomElement('div', ['booksCover-container'], '');
-document.body.appendChild(booksCover)
+// const booksCover = createDomElement('div', ['booksCover-container'], '');
+// document.body.appendChild(booksCover)
+
+
+
+ homePageButton.addEventListener('click', () => {
+    window.open("newPage.js", "_blank");
+    
+})
 
 //  DEVO CHIEDERE IL PERMESSO A ONPENLIBRARY(CORS)
 
@@ -55,13 +64,15 @@ document.body.appendChild(booksCover)
 // });
 
 // richiesta al server
+// async function fetchReq() {
+//     const response = await fetch (' https://openLibrary.org/subjects/fantasy.json');
+//     if(response.status === 200 ){
+//         let data = await response.json();
+//         console.log(data)
+//     } else {
+//         console.log('error')
+//     }
+// }
+// fetchReq();
 
-export function sayHello() {
- homePageButton.addEventListener('click',   () => {
-       window.open('newPage.js', '_blank');
- })
-}
-
-import{sayGoodbye} from '../newPage.js';
-sayGoodbye();
-sayHello();
+//METODO CHE FUNZIONA 
