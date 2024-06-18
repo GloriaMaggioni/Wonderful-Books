@@ -3,8 +3,7 @@
 
  module.exports = {
     entry:{
-        app: './src/js/index.js',
-        // seconPage: './src/newPage.js'
+        app: './src/js/index.js',    
     },
     output:{
         path: path.resolve(__dirname, 'dist'),
@@ -21,6 +20,7 @@
             title: 'Wonderful Books',
             template: './src/index.html',
         }),
+       
     ],
     devServer:{
         port: 5000,

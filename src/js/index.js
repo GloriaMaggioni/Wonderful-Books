@@ -24,55 +24,62 @@ import '../css/style.css';
     const homePageSearch = createDomElement('input', ['homePage-search'], ' ');
     homePageSearch.placeholder = 'Search your books...'
     const homePageButton = createDomElement('button', ['homePage-button'], 'Search');
-    homePage.append(homePageTitle,homePageSearch,homePageButton);
+    // homePage.append(homePageTitle,homePageSearch,homePageButton);
 
 
+    homePage.appendChild(homePageTitle);
+    homePage.appendChild(homePageSearch);
+    homePage.appendChild(homePageButton);
 
 
 
 // contenitore per la cover dei libri
 
-// const booksCover = createDomElement('div', ['booksCover-container'], '');
-// document.body.appendChild(booksCover)
 
 
 
- homePageButton.addEventListener('click', () => {
-    window.open("newPage.js", "_blank");
+//pagina dei risultati
+
+homePageButton.addEventListener('click',  () => {
+    let searchTerm = homePageSearch.value;
+    fetch(`https://openlibrary.org/search.json?q=${searchTerm}`)
+        .then(response => response.json())
+        .then(data => {
+            // Creare un array di URL delle copertine dei libri
+            const coverUrls =   data.docs.map(book => book.cover_i ? `https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg` : null).filter(url => url);
+            
+            // Aprire una nuova finestra del browser con i risultati delle copertine dei libri
+            const newWindow = window.open();
+            coverUrls.forEach(url => {
+                const img = document.createElement('img');
+                img.src = url;
+                newWindow.document.body.appendChild(img);
+            });
+        })
+        .catch(err => console.error(err));
+});
+
+
+
+
+
+// homePageButton.addEventListener(' click', async () => {
+//     let searchBooks = homePageSearch.value;
+
+//     try{
+//         const response = await fetch(`https://openlibrary.org/search.json?q=${searchBooks}`);
+//         const data = await response.json();
+
+//         const coverBooksUrls = data.docs.map(book => book.cover_i ? `https://covers.openLibrary.org/b/id/${book.cover_i}-L.jpg` : null).filter(url => url);
+
+//         const newWindow = window.open();
+//         coverBooksUrls.forEach(url => {
+//             const img = document.createElement('img');
+//             img.src = url;
+//             newWindow.document.body.appendChild(img);
+//         })
     
-})
-
-//  DEVO CHIEDERE IL PERMESSO A ONPENLIBRARY(CORS)
-
-// homePageButton.addEventListener('click',   () => {
-// fetch('https://openlibrary.org/search.json?q=harry+potter')
-//   .then(response => response.json())
-//   .then(data => {
-//     // Display the fetched data
-//     const booksList = document.getElementById('books-list');
-//     data.docs.forEach(book => {
-//       const li = document.createElement('li');
-//       li.textContent = `${book.title} by ${book.author_name}`;
-//       booksList.appendChild(li);
-//       console.log('funzia')
-//     });
-//   })
-//   .catch(error => {
-//     console.error('Error:', error);
-//   });
-
-// });
-
-// richiesta al server
-// async function fetchReq() {
-//     const response = await fetch (' https://openLibrary.org/subjects/fantasy.json');
-//     if(response.status === 200 ){
-//         let data = await response.json();
-//         console.log(data)
-//     } else {
-//         console.log('error')
+//     }catch (error) {
+//         coconsole.log(error);
 //     }
-// }
-// fetchReq();
-
-//METODO CHE FUNZIONA 
+// })
