@@ -55,3 +55,14 @@
     border: 1px solid red;
     margin-top: 70px;
 }
+
+
+
+.coverImg-container{
+    border: 1px solid red;
+    width: 100px;
+    height: 200px;
+}
+.coverImg-container img{
+    width: 100%;
+}

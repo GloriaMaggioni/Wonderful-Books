@@ -40,24 +40,77 @@ import '../css/style.css';
 
 //pagina dei risultati
 
-homePageButton.addEventListener('click',  () => {
-    let searchTerm = homePageSearch.value;
-    fetch(`https://openlibrary.org/search.json?q=${searchTerm}`)
-        .then(response => response.json())
-        .then(data => {
-            // Creare un array di URL delle copertine dei libri
-            const coverUrls =   data.docs.map(book => book.cover_i ? `https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg` : null).filter(url => url);
+// homePageButton.addEventListener('click',  () => {
+//     let searchTerm = homePageSearch.value;
+//     fetch(`https://openlibrary.org/search.json?q=${searchTerm}`)
+//         .then(response => response.json())
+//         .then(data => {
+//             // Creare un array di URL delle copertine dei libri
+//             const coverUrls =   data.docs.map(book => book.cover_i ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` : null).filter(url => url);
             
-            // Aprire una nuova finestra del browser con i risultati delle copertine dei libri
-            const newWindow = window.open();
-            coverUrls.forEach(url => {
-                const img = document.createElement('img');
-                img.src = url;
-                newWindow.document.body.appendChild(img);
-            });
+//             // Aprire una nuova finestra del browser con i risultati delle copertine dei libri
+//             const newWindow = window.open();
+//             coverUrls.forEach(url => {
+//                 const img = document.createElement('img');
+//                 img.src = url;
+//                 newWindow.document.body.appendChild(img);
+//             });
+//         })
+//         .catch(err => console.error(err));
+// });
+
+
+
+homePageButton.addEventListener('click', () => {
+    let searchBooks = homePageSearch.value;
+    fetch(`https://openlibrary.org/search.json?q=${searchBooks}`)
+    .then(response => response.json())
+    .then(data =>{
+        // array delle copertine
+        const coverBooksUrls = data.docs.map ( book =>  book.cover_i ? `https://covers.openLibrary.org/id/${book.cover_i}.jpg ` : null ).filter(url => url);
+        // array degli autori
+        const authorBooks = data.docs.map (book => book.authors ? book.author[0].name : null).filter(author => author);
+
+        // aprire una nuva pagina
+        const resultsPage =  window.open();
+
+        coverBooksUrls.forEach(url =>{
+            const imgContainer = createDomElement('div', ['coverImg-container'], ' ');
+            const img = document.createElement('img')
+            img.src = url;
+            imgContainer.appendChild(img)
+            resultsPage.document.body.appendChild(imgContainer);
+        
         })
-        .catch(err => console.error(err));
-});
+ 
+        authorBooks.forEach(url => {
+            const authorContainer = createDomElement('div', ['author-container'], ' ');
+            const author = document.createElement('p')
+            author.textContent = url
+            authorContainer.appendChild(author)
+            resultsPage.document.body.appendChild(authorContainer);
+        })
+
+    })
+    .catch(error => {
+       console.log(error)
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
