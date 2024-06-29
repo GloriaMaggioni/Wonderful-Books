@@ -50,19 +50,11 @@
     background-color: #000000;
 }
 
-
-.booksCover-container{
+.coverBooks-container{
     border: 1px solid red;
-    margin-top: 70px;
+    width: 200px;
+    height: 100px;
+    display: inline-flex;
 }
 
-
-
-.coverImg-container{
-    border: 1px solid red;
-    width: 100px;
-    height: 200px;
-}
-.coverImg-container img{
-    width: 100%;
-}
+ 
