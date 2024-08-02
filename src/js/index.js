@@ -1,6 +1,16 @@
 // file  entry point del progetto
+
 import '../css/style.css';
-import axios from 'axios';
+
+
+
+
+
+// `https://www.openLibrary.org/search.json?q=
+// `https://covers.openLibrary.org/b/id/${book.cover_i}-M.jpg`
+
+
+
 
  const createDomElement = (tag, classes, content) =>{
     const el = document.createElement(tag);
@@ -26,46 +36,34 @@ import axios from 'axios';
 
 // container father for cover books
 
-const coverBooksContainer = createDomElement('div', ['coverBooks-container'], ' ');
-
-// container for cover
-
-
-for (let i = 0; i<4; i++){
-    const coverBooksCard = createDomElement('div', ['cover-books-card'], ' ');
-    coverBooksContainer.appendChild(coverBooksCard);
-    
-}
-
-homePage.append(coverBooksContainer);
+const coverBooksContainer = createDomElement('div', ['coverBooks-container'], '');
+homePage.appendChild(coverBooksContainer);
 
 
 
-homePageButton.addEventListener('click', () =>{
+homePageButton.addEventListener('click', () => {
     let searchBooks = homePageSearch.value;
-    axios.get(`https://www.openLibrary.org/search.json?q=${searchBooks}`)
-    .then(response =>{
-        const coverBooksUrl = response.data.docs
-        .map(books => books.cover_i ? `https://covers.openLibrary.org/b/id/${book.cover_i}-M.jpg` : null).filter(url=>url);
-     
-        
-     coverBooksUrl.forEach(url =>{
-        const coverBooksImg = createDomElement('img', ['coverBooks-img'], 'img');
-        coverBooksImg.src = url;
-       
-        coverBooksCard.appendChild(coverBooksImg);
-     })
-    })
+  fetch(`https://www.openlibrary.org/search.json?q=${searchBooks}`)
 
-     .catch(e => console.log(e));
-    
+    .then(response => response.json())
+    .then(data => {
+        const coverBooksUrl = data.docs.map(book => book.cover_i ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` : null).filter(url => url);
+
+        coverBooksUrl.forEach(url =>{
+            const coverBooksCard = createDomElement('div', ['coverBooks-card'], '');
+            const coverBooksImg = createDomElement('img', ['coverBooks-img'], 'img');
+            coverBooksImg.src = url;
+            coverBooksCard.appendChild(coverBooksImg);
+
+            coverBooksContainer.appendChild(coverBooksCard)
+        })
+        .catch(e => console.log(e))
+    })
 })
 
 
 
 
-// `https://www.openLibrary.org/search.json?q=
-// `https://covers.openLibrary.org/b/id/${book.cover_i}-M.jpg`
 
 
 
@@ -73,32 +71,176 @@ homePageButton.addEventListener('click', () =>{
 
 
 
-// const coverBooksContainer = createDomElement('div', ['coverBooks-container'], ' ');
 
-// // Container for cover
 
-// for (let i = 0; i < 4; i++) {
-//     const coverBooksCard = createDomElement('div', ['cover-books-card'], ' ');
-//     coverBooksContainer.appendChild(coverBooksCard);
-// }
 
-// homePage.append(coverBooksContainer);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // homePageButton.addEventListener('click', () => {
 //     let searchBooks = homePageSearch.value;
-//     axios.get(`https://www.openLibrary.org/search.json?q=${searchBooks}`)
+
+//     axios.get(`https://www.openlibrary.org/search.json?q=${searchBooks}`,{
+
+//         // headers: {
+//         //     'Access-Control-Allow-Origin': '*',
+//         //     'Access-Control-Allow-Headers': 'Content-type, application-json, */*'
+//         //   }
+//     })
+     
 //         .then(response => {
 //             const coverBooksUrl = response.data.docs
-//                 .map(books => books.cover_i ? `https://covers.openLibrary.org/b/id/${books.cover_i}-M.jpg` : null)
+//                 .map(books => books.cover_i ? `https://covers.openlibrary.org/b/id/${books.cover_i}-M.jpg` : null)
 //                 .filter(url => url);
 
 //             coverBooksUrl.forEach(url => {
+//                 const coverBooksCard = createDomElement('div', ['coverBooks-card'], '');
 //                 const coverBooksImg = createDomElement('img', ['coverBooks-img'], 'img');
 //                 coverBooksImg.src = url;
-//                 coverBooksCard.appendChild(coverBooksImg); // Modifica la destinazione dell'elemento img
+//                 coverBooksCard.appendChild(coverBooksImg);
+
+//                 const coverBooksInfo = createDomElement('div', ['coverBooks-info'], '');
+//                 const coverBooksTitle = createDomElement('h3', ['coverBooks-title'], 'h3');
+//                 coverBooksTitle.textContent = books.title;
+//                 coverBooksInfo.appendChild(coverBooksTitle);
+
+//                 const coverBooksAuthor = createDomElement('p', ['coverBooks-author'], 'p');
+//                 coverBooksAuthor.textContent = books.author_name;
+//                 coverBooksInfo.appendChild(coverBooksAuthor);
+
+//                 coverBooksCard.appendChild(coverBooksInfo);
+//                 coverBooksContainer.appendChild(coverBooksCard);
 //             });
 //         })
-//         .catch(error => {
-//             console.error('Errore nella richiesta axios:', error);
-//         });
+//         .catch(e => console.log(e));
 // });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
