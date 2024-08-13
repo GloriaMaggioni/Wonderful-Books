@@ -1,6 +1,7 @@
 // file  entry point del progetto
 
 import '../css/style.css';
+import axios from 'axios';
 
 
 
@@ -31,7 +32,14 @@ import '../css/style.css';
     const homePageButton = createDomElement('button', ['homePage-button'], 'Search');
     homePage.append(homePageTitle,homePageSearch,homePageButton);
 
-   
+// creare la favicon
+
+// let favicon = document.createElement('link');
+// favicon.rel = 'icon';
+// favicon.href = '../img/lupo.jpg';
+// favicon.type = 'image/jpg';
+// document.head.appendChild(favicon);
+//DA SISTEMARE: NON FUNZIONA
 
 
 // container father for cover books
@@ -39,26 +47,27 @@ import '../css/style.css';
 const coverBooksContainer = createDomElement('div', ['coverBooks-container'], '');
 homePage.appendChild(coverBooksContainer);
 
-
-
 homePageButton.addEventListener('click', () => {
     let searchBooks = homePageSearch.value;
-  fetch(`https://www.openlibrary.org/search.json?q=${searchBooks}`)
 
-    .then(response => response.json())
-    .then(data => {
-        const coverBooksUrl = data.docs.map(book => book.cover_i ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` : null).filter(url => url);
+    axios.get(`https://www.openLibrary.org/search.json?q=${searchBooks}`)
+    .then(response => data.json())
+    .then(data =>{
+        // richiedere le cover per i libri
+       const coverBooksUrl = data.docs.map(book => book.cover_i ? `htttps://covers.openLibrary.org/b/id/${cover_i}.jpg` : null).filter(url => url);
 
-        coverBooksUrl.forEach(url =>{
-            const coverBooksCard = createDomElement('div', ['coverBooks-card'], '');
-            const coverBooksImg = createDomElement('img', ['coverBooks-img'], 'img');
-            coverBooksImg.src = url;
-            coverBooksCard.appendChild(coverBooksImg);
+       coverBooksUrl.forEach(url =>{
+        const bookCoverCard = createDomElement('div', ['coverBooks-card'], '');
+        const bookCoverImg = createDomElement('img', ['coverBooks-img'], 'img');
+        bookCoverImg.src = url;
+        bookCoverCard.appendChild(bookCoverImg);
+        coverBooksContainer.appendChild(bookCoverCard);
+        // non funziona .Problema CORS
+       })
 
-            coverBooksContainer.appendChild(coverBooksCard)
-        })
-        .catch(e => console.log(e))
+        //richiedere gli autori dei libri
     })
+    .catch(e => console.log(e))
 })
 
 
@@ -76,6 +85,37 @@ homePageButton.addEventListener('click', () => {
 
 
 
+
+// homePageButton.addEventListener('click', () => {
+//     let headers = new Headers();
+//     headers.append('Content-Type', 'application/json');
+//     headers.append('Accept', 'application/json');
+//     headers.append('Access-Control-Allow-Origin', ' * ');
+//     headers.append('Access-Control-Allow-Credentials', 'true');
+//     headers.append('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+
+//     let searchBooks = homePageSearch.value;
+//     fetch('https://www.openlibrary.org/search.json?q=' + searchBooks, {
+//         method: 'GET',
+//         credentials: 'same-origin',
+//         headers: headers,
+
+//     })
+//         .then(response => response.json())
+//         .then(data => {
+//             const coverBooksUrl = data.docs.map(book => book.cover_i ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` : null).filter(url => url);
+
+//             coverBooksUrl.forEach(url => {
+//                 const coverBooksCard = createDomElement('div', ['coverBooks-card'], '');
+//                 const coverBooksImg = createDomElement('img', ['coverBooks-img'], 'img');
+//                 coverBooksImg.src = url;
+//                 coverBooksCard.appendChild(coverBooksImg);
+
+//                 coverBooksContainer.appendChild(coverBooksCard);
+//             });
+//         })
+//         .catch(e => console.log(e));
+// });
 
 
 

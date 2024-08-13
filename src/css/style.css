@@ -59,7 +59,7 @@
     margin-top: 50px;
 }
 
-.cover-books-card{
+.coverBooks-card{
     border:  1px solid blue;
     width: calc((100% / 4) - 10px); 
     /* da sistemare */
