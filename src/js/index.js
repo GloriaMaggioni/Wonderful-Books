@@ -2,7 +2,7 @@
 
 import '../css/style.css';
 import axios from 'axios';
-import headers from '../api.config.js'
+// import headers from '../api.config.js'
 
 // `https://www.openLibrary.org/search.json?q=
 // `https://covers.openLibrary.org/b/id/${book.cover_i}-M.jpg`
@@ -42,11 +42,7 @@ coverBooksContainer.appendChild(coverBooksCard);
 homePageButton.addEventListener('click', () => {
     const searchBooks = homePageSearch.value;
   
-   axios.get(`https://www.openLibrary.org/search.json?q=${searchBooks}`,{
-
-     headers: headers,
-
-   })
+   axios.get(`https://openLibrary.org/search.json?q=${searchBooks}`)
    .then(response => response.data)
    .then(data =>{
     const coverBooksUrl = data.docs.map(book => book.cover_i ? `https://covers.openLibrary.org/b/id/${book.cover_i}-M.jpg ` : null).filter(url => url);
@@ -58,9 +54,11 @@ homePageButton.addEventListener('click', () => {
         homePage.appendChild(coverBooksCard);
 
      })
-     .catch(e => console.log(e))
+     
 
    })
+   .catch(e => console.log(e))
+//   PROVARE  A FARLA ASINCRONA
 
 
 
