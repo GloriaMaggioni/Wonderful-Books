@@ -55,16 +55,28 @@
 .coverBooks-container{
     border: 1px solid red;
     width: 100%;
-    /* height: 100%; */
+    height: fit-content;
     margin-top: 50px;
-}
+   
 
-.coverBooks-card{
-    border:  1px solid blue;
-    width: calc((100% / 4) - 10px); 
-    /* da sistemare */
+   
+ }
+
+ .coverBooks-container .card{
+    border: 1px solid blue ;
+    width: 250px;
     height: 300px;
+    margin: 20px;
     display: inline-flex;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
+    align-items: flex-start;
+    justify-content: center;
+
+ }
+
+
+ .coverBooks-container .card .coverBook-img{
+    border:1px solid #000000;
+    height: 70%;
+    width: 100%;
+    margin-top: 0;
+ }
