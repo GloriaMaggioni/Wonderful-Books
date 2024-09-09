@@ -68,7 +68,7 @@
     height: 300px;
     margin: 20px;
     display: inline-flex;
-    align-items: flex-start;
+    /* align-items: flex-start; */
     justify-content: center;
 
  }
@@ -80,3 +80,8 @@
     width: 100%;
     margin-top: 0;
  }
+
+.title-book-container{
+    border: 1px solid red;
+    bottom: 0;
+}

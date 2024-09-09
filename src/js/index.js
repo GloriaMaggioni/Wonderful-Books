@@ -32,10 +32,6 @@ import axios from 'axios';
 
 const coverBooksContainer = createDomElement('div', ['coverBooks-container'], '');
 homePage.appendChild(coverBooksContainer);
-// const coverBooksCard = createDomElement('div', ['coverBooks-card'], '')
-// coverBooksContainer.appendChild(coverBooksCard)
-
-
 
 
  function createCard(){
@@ -44,28 +40,34 @@ homePage.appendChild(coverBooksContainer);
    return card
 
  }
+ 
 
-async function getBooks(coverBooksContainer) {
-    let searchBooks = homePageSearch.value;
+async function getBooks() {
+  let searchBooks = homePageSearch.value;
     try{
         const response = await axios.get(`https://openLibrary.org/search.json?q=${searchBooks}`);
-       const data = response.data;
-      const coverBooksUrl = data.docs.map(book => book.cover_i ? `https://covers.openLibrary.org/b/id/${book.cover_i}-M.jpg` : null).filter(url => url);
-      // const authorsBookUrl = data.docs.map(book => book ? author.name[0] : null).filter(author => author)
-       coverBooksUrl.forEach(url =>{
+       const data =  response.data;
+      //  cover books call
+      const coverBooksUrl =   data.docs.map(book => book.cover_i ? `https://covers.openLibrary.org/b/id/${book.cover_i}-M.jpg` : null).filter(url => url);
+      coverBooksUrl.forEach(url =>{
+        const coverBooksImg = createDomElement('img', ['coverBook-img'], '');
+        coverBooksImg.src = url;
+        createCard().appendChild(coverBooksImg);
         
-         const coverBooksImg = createDomElement('img', ['coverBook-img'], '');
-         coverBooksImg.src = url;
-         createCard().appendChild(coverBooksImg);
-       
-        })
-          // DA SISTEMARE
-        // authorsBookUrl.forEach( authors =>{
-        //   const authorCard = createDomElement('h3', ['author-card'], '')
-        //   authorCard.textContent = authors;
-        //   coverBooksImg.append(authorCard)
-        // })
-    
+      
+       })      
+
+      //  title book call
+
+      const titleBooksUrl = data.docs.map(book => book.title ? book.title : null).filter(title => title);
+      titleBooksUrl.forEach(title =>{
+        const titleBook = createDomElement('h3', ['title-book'], '');
+        titleBook.textContent = title;
+        createCard().appendChild(titleBook);
+      })
+        
+      // FUNZIONANO ENTRAMBI , PERO BISOGNA CHE IL TITOLO SI ATTACCHI ALLA IMMAGINE CORRISPONDENTE
+        
     }catch(error){
         console.log(error)
     }
@@ -73,8 +75,12 @@ async function getBooks(coverBooksContainer) {
 }
 
 
+
+
+
 homePageButton.addEventListener('click', () =>{
-    getBooks(coverBooksContainer)
+     getBooks();
+    
 })
 
 
