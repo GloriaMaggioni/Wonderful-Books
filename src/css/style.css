@@ -58,8 +58,6 @@
     height: fit-content;
     margin-top: 50px;
    
-
-   
  }
 
  .coverBooks-container .card{
@@ -67,23 +65,34 @@
     width: 250px;
     height: 300px;
     margin: 20px;
-    display: inline-flex;
-    /* align-items: flex-start; */
-    justify-content: center;
+    margin-top : 30px;
+    display: inline-block;
+    /* display: inline-flex;
+    align-items: flex-start;
+    justify-content: center; */
 
- }
+ } 
 
 
  .coverBooks-container .card .coverBook-img{
     border:1px solid #000000;
     height: 70%;
     width: 100%;
-    margin-top: 0;
+   
  }
-/* 
-.title-book-container{
+
+ .nameBook-container{
+    border: 1px solid orange;
+    width: 100%;
+ }
+
+.title-book{
     border: 1px solid red;
-    bottom: 0;
+   
 }
 
-  */
+.author-book{
+    border: 1px solid pink;
+}
+
+ 
