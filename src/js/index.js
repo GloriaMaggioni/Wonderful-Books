@@ -32,10 +32,6 @@ import axios from 'axios';
 
 const coverBooksContainer = createDomElement('div', ['coverBooks-container'], '');
 homePage.appendChild(coverBooksContainer);
-// const coverBooksCard = createDomElement('div', ['coverBooks-card'], '')
-// coverBooksContainer.appendChild(coverBooksCard)
-
-
 
 
  function createCard(){
@@ -44,41 +40,72 @@ homePage.appendChild(coverBooksContainer);
    return card
 
  }
+ 
 
-async function getBooks(coverBooksContainer) {
-    let searchBooks = homePageSearch.value;
+
+async function getBooks(){
+
+  let searchBooks = homePageSearch.value;
+
     try{
-        const response = await axios.get(`https://openLibrary.org/search.json?q=${searchBooks}`);
-       const data = response.data;
-      const coverBooksUrl = data.docs.map(book => book.cover_i ? `https://covers.openLibrary.org/b/id/${book.cover_i}-M.jpg` : null).filter(url => url);
-      // const authorsBookUrl = data.docs.map(book => book ? author.name[0] : null).filter(author => author)
-       coverBooksUrl.forEach(url =>{
+
+      const response = await axios.get(`https://openLibrary.org/search.json?q=${searchBooks}`);
+      const data = response.data;
+
+      const books = data.docs.map(book =>({
+          cover: book.cover_i ? `https://covers.openLibrary.org/b/id/${book.cover_i}-M.jpg` : null,
+          title: book.title ? book.title : null,
+          author: book.author_name ? book.author_name : null,
+          // richiamo autori
+
+      })).filter(book => book.cover && book.title && book.author);
+
+       books.forEach(book =>{
+        const card = createCard();
+
+
+        // covers' books
+          const coverBooksImg = createDomElement('img',['coverBook-img'], '');
+          coverBooksImg.src = book.cover;
+          card.appendChild(coverBooksImg);
+
+          
+        // title and author container
+         const nameBookCont = createDomElement('div', ['nameBook-cont'], '');
+         card.appendChild(nameBookCont);
+         
+         // book's title
+        const titleBook = createDomElement('h3',['title-book'], '');
+        titleBook.textContent = book.title;
+
+        // books' author
+        const authorBook = createDomElement('p', ['author-book'], '');
+
+        if(book.author.length > 3){
+          authorBook.textContent = book.author[0] && book.author[1] && book.author[2];
+
+        }else{
+          authorBook.textContent = book.author;
+        }
         
-         const coverBooksImg = createDomElement('img', ['coverBook-img'], '');
-         coverBooksImg.src = url;
-         createCard().appendChild(coverBooksImg);
-       
-        })
-          // DA SISTEMARE
-        // authorsBookUrl.forEach( authors =>{
-        //   const authorCard = createDomElement('h3', ['author-card'], '')
-        //   authorCard.textContent = authors;
-        //   coverBooksImg.append(authorCard)
-        // })
-    
+        nameBookCont.append(titleBook, authorBook)
+        
+
+       })
+
+      
+
     }catch(error){
-        console.log(error)
+      console.log(error)
     }
-    
+
 }
 
 
 homePageButton.addEventListener('click', () =>{
-    getBooks(coverBooksContainer)
+  getBooks();
+ 
 })
-
-
-
 
 
 
