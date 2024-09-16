@@ -71,17 +71,25 @@ async function getBooks(){
 
           
         // title and author container
-        
+         const nameBookCont = createDomElement('div', ['nameBook-cont'], '');
+         card.appendChild(nameBookCont);
+         
          // book's title
         const titleBook = createDomElement('h3',['title-book'], '');
         titleBook.textContent = book.title;
-        card.appendChild(titleBook);
 
         // books' author
         const authorBook = createDomElement('p', ['author-book'], '');
-        authorBook.textContent = book.author;
+
+        if(book.author.length > 3){
+          authorBook.textContent = book.author[0] && book.author[1] && book.author[2];
+
+        }else{
+          authorBook.textContent = book.author;
+        }
         
-      card.appendChild(authorBook);
+        nameBookCont.append(titleBook, authorBook)
+        
 
        })
 
