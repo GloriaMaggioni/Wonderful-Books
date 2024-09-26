@@ -2,15 +2,11 @@
 
 import '../css/style.css';
 import axios from 'axios';
+// import '../js/details.js';
+import { detailsContainer } from './details.js';
 
 
-// `https://www.openLibrary.org/search.json?q=
-// `https://covers.openLibrary.org/b/id/${book.cover_i}-M.jpg`
-
-
-
-
-  const createDomElement = (tag, classes, content) =>{
+   const createDomElement = (tag, classes, content) =>{
     const el = document.createElement(tag);
     classes.forEach( e => el.classList.add(e));
     el.innerHTML = content;
@@ -30,19 +26,20 @@ import axios from 'axios';
     homePage.append(homePageTitle,homePageSearch,homePageButton);
 
 
-const coverBooksContainer = createDomElement('div', ['coverBooks-container'], '');
-homePage.appendChild(coverBooksContainer);
+
+    const coverBooksContainer = createDomElement('div', ['coverBooks-container'], '');
+    homePage.appendChild(coverBooksContainer);
 
 
- function createCard(){
-   const card = createDomElement('div', ['card'], '');
-   coverBooksContainer.append(card)
-   return card
+   function createCard(){
+       const card = createDomElement('div', ['card'], '');
+      coverBooksContainer.append(card)
+     return card
 
- }
+   }
  
-
-
+ 
+// call of books
 async function getBooks(){
 
   let searchBooks = homePageSearch.value;
@@ -56,45 +53,63 @@ async function getBooks(){
           cover: book.cover_i ? `https://covers.openLibrary.org/b/id/${book.cover_i}-M.jpg` : null,
           title: book.title ? book.title : null,
           author: book.author_name ? book.author_name : null,
+          key: book.key ? `https://openlibrary.org${book.key}` : null,
+
           // richiamo autori
 
-      })).filter(book => book.cover && book.title && book.author);
+        })).filter(book => book.cover && book.title && book.author);
 
-       books.forEach(book =>{
+      books.forEach(book =>{
         const card = createCard();
 
 
-        // covers' books
-          const coverBooksImg = createDomElement('img',['coverBook-img'], '');
-          coverBooksImg.src = book.cover;
-          card.appendChild(coverBooksImg);
+          // covers' books
+            const coverBooksImg = createDomElement('img',['coverBook-img'], '');
+            coverBooksImg.src = book.cover;
+            card.appendChild(coverBooksImg);
 
           
-        // title and author container
-         const nameBookCont = createDomElement('div', ['nameBook-cont'], '');
-         card.appendChild(nameBookCont);
+          // title and author container
+             const nameBookCont = createDomElement('div', ['nameBook-cont'], '');
+             card.appendChild(nameBookCont);
          
-         // book's title
-        const titleBook = createDomElement('h3',['title-book'], '');
-        titleBook.textContent = book.title;
+          // book's title
+             const titleBook = createDomElement('h3',['title-book'], '');
+             titleBook.textContent = book.title;
 
-        // books' author
-        const authorBook = createDomElement('p', ['author-book'], '');
+          // books' author
+            const authorBook = createDomElement('p', ['author-book'], '');
 
-        if(book.author.length > 3){
+            if(book.author.length > 3){
           authorBook.textContent = book.author[0] && book.author[1] && book.author[2];
 
-        }else{
-          authorBook.textContent = book.author;
-        }
+            }else{
+               authorBook.textContent = book.author;
+            }
         
-        nameBookCont.append(titleBook, authorBook)
+            nameBookCont.append(titleBook, authorBook)
         
+
+          // details of books
+          const detailsButton = createDomElement('button', ['details-button'], 'Click me.');
+          nameBookCont.appendChild(detailsButton);
+              
+          detailsButton.addEventListener('click',() =>{
+            const detailsPage = window.open();
+            
+
+              // const detailsContainer = createDomElement('div',['details-container'],'');
+              // detailsContainer.textContent = 'detailssss pagessss'
+              detailsPage.document.body.appendChild(detailsContainer);
+
+       
+           
+
+
+          })
+
 
        })
-
-      
-
     }catch(error){
       console.log(error)
     }
@@ -104,20 +119,7 @@ async function getBooks(){
 
 homePageButton.addEventListener('click', () =>{
   getBooks();
- 
 })
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

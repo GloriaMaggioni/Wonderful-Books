@@ -1,14 +1,12 @@
- 
 
-
-  
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 
     entry: {
-        index: './src/js/index.js'
+        index: './src/js/index.js',
+      
     },
     output:{
         path: path.resolve(__dirname, 'dist'),
@@ -23,8 +21,9 @@ module.exports = {
     plugins:[
        new HtmlWebpackPlugin({
           title: 'Wonderful Books', 
-          template: './src/index.html'
-        })
+          template: './src/index.html',
+        }),
+      
     ],
     devServer: {
        port: 5000,
