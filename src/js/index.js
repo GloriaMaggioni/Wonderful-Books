@@ -2,9 +2,7 @@
 
 import '../css/style.css';
 import axios from 'axios';
-import { detailsContainer, bigCoverBook } from './details.js';
-// import '../js/details.js';
-import { detailsContainer } from './details.js';
+import { detailsContainer, bigCoverBook, coverImage, bookTitle, detailsBookAuthors, bookDescription } from './details.js';
 
 
    const createDomElement = (tag, classes, content) =>{
@@ -55,6 +53,7 @@ async function getBooks(){
           title: book.title ? book.title : null,
           author: book.author_name ? book.author_name : null,
           key: book.key ? `https://openlibrary.org${book.key}` : null,
+          description: book.description ? book.description : null
 
           // richiamo autori
 
@@ -98,24 +97,11 @@ async function getBooks(){
           detailsButton.addEventListener('click',() =>{
             const detailsPage = window.open();
               detailsPage.document.body.appendChild(detailsContainer);
-
-       
-                bigCoverBook.src = book.cover;
-                
-
-              
-       
-
-            
-
-              // const detailsContainer = createDomElement('div',['details-container'],'');
-              // detailsContainer.textContent = 'detailssss pagessss'
-              detailsPage.document.body.appendChild(detailsContainer);
-
-       
-           
-
-
+              coverImage.src = book.cover;
+              bookTitle.textContent = book.title;
+              detailsBookAuthors.textContent = book.author;
+              bookDescription.textContent = book.description;
+              //  book.description da rivedere
           })
 
 
