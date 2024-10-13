@@ -29,6 +29,12 @@ detailsContainer.appendChild(detailsBookAuthors);
 
 //book's description
 
-export const bookDescription = document.createElement('p');
-bookDescription.className = 'book-descirption';
+export const bookDescription = document.createElement('div');
+bookDescription.className = 'book-description';
+// bookDescription.style.border = '1px solid red'
 detailsContainer.appendChild(bookDescription);
+
+export const bookTrama = document.createElement('p');
+bookTrama.className = 'book-trama';
+bookTrama.style.border = '1px solid black'
+bookDescription.appendChild(bookTrama);

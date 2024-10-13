@@ -2,7 +2,7 @@
 
 import '../css/style.css';
 import axios from 'axios';
-import { detailsContainer, bigCoverBook, coverImage, bookTitle, detailsBookAuthors, bookDescription } from './details.js';
+import { detailsContainer, bigCoverBook, coverImage, bookTitle, detailsBookAuthors, bookDescription, bookTrama } from './details.js';
 
 
    const createDomElement = (tag, classes, content) =>{
@@ -52,12 +52,11 @@ async function getBooks(){
           cover: book.cover_i ? `https://covers.openLibrary.org/b/id/${book.cover_i}-M.jpg` : null,
           title: book.title ? book.title : null,
           author: book.author_name ? book.author_name : null,
-          key: book.key ? `https://openlibrary.org${book.key}` : null,
-          description: book.description ? book.description : null
+          key: book.key ? book.key : null,
 
           // richiamo autori
 
-        })).filter(book => book.cover && book.title && book.author);
+        })).filter(book => book.cover && book.title && book.author && book.key);
 
       books.forEach(book =>{
         const card = createCard();
@@ -94,16 +93,28 @@ async function getBooks(){
           const detailsButton = createDomElement('button', ['details-button'], 'Click me.');
           nameBookCont.appendChild(detailsButton);
               
-          detailsButton.addEventListener('click',() =>{
+        
+          detailsButton.addEventListener('click', () => {
             const detailsPage = window.open();
-              detailsPage.document.body.appendChild(detailsContainer);
-              coverImage.src = book.cover;
-              bookTitle.textContent = book.title;
-              detailsBookAuthors.textContent = book.author;
-              bookDescription.textContent = book.description;
-              //  book.description da rivedere
-          })
+            detailsPage.document.body.appendChild(detailsContainer);
+            coverImage.src = book.cover;
+            bookTitle.textContent = book.title;
+            detailsBookAuthors.textContent = book.author;
+        
 
+            // book's description
+            bookDescription.style.border = '2px solid red'
+             bookTrama.textContent = book.key;
+             if(book.key === null){
+               bookTrama.textContent = 'Trama non disponibile';
+             }else{
+               return book.key ;
+               
+
+
+             }
+             
+          })
 
        })
     }catch(error){
