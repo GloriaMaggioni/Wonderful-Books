@@ -108,13 +108,15 @@
     padding: 5px;
 }
 
- /* DETAILS OF THE BOOKS */
+
+/* DETAILS OF THE BOOKS */
 
  .details-button{
     width: fit-content;
     margin-left: 70%;
     margin-bottom: 5px;
  }
+
  
  .details-container{
     border:3px solid red;
@@ -123,4 +125,6 @@
  }
  .big-cover-book{
     border: 1px solid green;
- } 
+    width: 300px;
+    height: 400px;
+ }
