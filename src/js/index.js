@@ -90,26 +90,28 @@ async function getBooks(){
             nameBookCont.append(titleBook, authorBook)
         
 
-          // details of books
-          const detailsButton = createDomElement('button', ['details-button'], 'Click me.');
-          nameBookCont.appendChild(detailsButton);
-              
-          detailsButton.addEventListener('click',() =>{
-            const detailsPage = window.open();
-            
-
-              // const detailsContainer = createDomElement('div',['details-container'],'');
-              // detailsContainer.textContent = 'detailssss pagessss'
-              detailsPage.document.body.appendChild(detailsContainer);
-
        
-           
+          detailsButton.addEventListener('click', () => {
+            const detailsPage = window.open();
+            detailsPage.document.body.appendChild(detailsContainer);
+            coverImage.src = book.cover;
+            bookTitle.textContent = book.title;
+            detailsBookAuthors.textContent = book.author;
+        
+
+            // book's description
+            bookDescription.style.border = '2px solid red'
+             bookTrama.textContent = book.key;
+             if(book.key === null){
+               bookTrama.textContent = 'Trama non disponibile';
+             }else{
+               return book.key ;
+               
 
 
+             }
+             
           })
-
-
-       })
     }catch(error){
       console.log(error)
     }
