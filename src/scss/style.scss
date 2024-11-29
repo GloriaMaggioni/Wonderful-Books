@@ -1,0 +1,184 @@
+@use "~bootstrap/scss/bootstrap";
+@use "bootstrap/scss/functions";
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;  
+}
+body{
+    background-image: url(../img/sfondo.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+$success:#00853E;
+
+
+
+// home page
+.homePage-container  {
+    margin: auto;
+    margin-top: 30vh;
+    height: 300px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+        
+    .homePage-title{
+        font-family: "Tourney", sans-serif;
+        font-weight: 900;
+        font-style: oblique;
+        font-size: 60px;
+    }  
+    .homePage-searchBar{
+        width: 25%;
+        height: 35px;
+        border-radius: 50px;
+        margin-top: 25px;
+        padding: 1%;
+        font-size: 18px;
+        border: 1px solid lightgrey; 
+        font-family: "Fira Sans", sans-serif;
+        font-weight: 400;
+       font-style: normal;
+    }
+    .homePage-button{
+        margin-top: 30px;
+        width: 100px;
+        font-family: "Tourney", sans-serif;
+        font-weight: 900;
+    }
+    .loading-spinner{
+       margin-top: 40px;
+       display: none;
+    }
+ 
+}
+
+
+//container cards' book    
+.coverBooks-container{
+    width: 80%;
+    margin-top: 40px;
+    max-width: 100%;
+    margin: center;
+    border-radius: 10px;
+    
+    
+    .card{
+      width:  300px;
+      height: 400px;
+      margin: 20px;
+      display: inline-flex;
+      border-color: green;
+        
+        .coverBook-img{
+            height: 65%;
+            width: 100%;
+            display: flex;
+            flex-direction: row; 
+        }
+        .card-body{
+            width: 100%;
+            height: fit-content;
+            max-height: 35%;
+            display: inline-flex;
+            align-items: flex-start;
+            flex-direction: column;
+            
+            .book-title{
+                font-size: medium;
+                width: fit-content;
+               
+            }
+            .details-button{               
+                --bs-btn-font-size: .75rem;
+                margin-left: 65%;
+                margin-bottom: 30%;
+                font-family: "Tourney", sans-serif;
+                font-weight: 900;
+             }
+             
+        }
+        
+    }
+   
+}
+
+// details' book
+.details-page{
+    width: fit-content;
+    display: inline-block;
+    flex-direction: row;
+    position: fixed;
+    top: 10%;
+    left: 18%;
+    max-width: 60%;
+    margin: auto;
+    z-index: 200;
+    padding: 9px;
+    background-color: $success;
+
+   .close-button{
+     width: fit-content;
+     margin-right: 0px;
+     border-radius: 3px;
+     border: none;
+    }
+    .img-cover{
+        margin-top: 7px;
+       border-radius: 2px;   
+    }
+    h4{
+        margin-top: 12px;
+        width: fit-content;
+        font-family: "Tourney", sans-serif;
+        font-weight: 900;
+        font-style: oblique;   
+    }
+    p{
+        margin-top: 5px;
+        padding-left: 3px;
+        width: fit-content;
+    }
+    .book-trama{
+       padding-left: 3px;
+    }
+}
+
+
+
+
+/* MEDIA QUERY*/
+
+@media  screen and (max-width: 444px) {
+    .card{
+        margin: auto;
+        height: fit-content;
+    }
+    .card-body{
+        height: fit-content;
+    }
+ }
+
+     
+ @media screen and (max-width: 700px){
+    .details-page{
+        position: fixed;
+        top: 10%;    
+    }
+ }
+ @media screen and (max-width: 500px) {
+    .details-page{
+        position: fixed;
+        top: 10%;  
+    }
+    
+ }
+ 

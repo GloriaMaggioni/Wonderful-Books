@@ -1,0 +1,29 @@
+{
+  "name": "wonderful-books",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack server",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.3",
+    "optimized-images-loader": "^0.4.0",
+    "sass": "^1.81.0",
+    "sass-loader": "^16.0.3",
+    "scss": "^0.2.4",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.96.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
+  },
+  "dependencies": {
+    "axios": "^1.7.8",
+    "bootstrap": "^5.3.3"
+  }
+}
