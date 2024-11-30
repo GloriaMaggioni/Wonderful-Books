@@ -44,7 +44,7 @@ module.exports = {
     plugins:[
         new HtmlWebpackPlugin({
             title: 'Wonderfull Books ',
-            template: './src/index.html',
+            template: 'index.html',
             favicon: './src/img/favicon.png',
         })
     ],
