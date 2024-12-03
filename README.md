@@ -19,7 +19,8 @@ LINK
 SCREENSHOT
 
 
-![Screenshot 'Wonderfull Books' home page](https://github.com/user-attachments/assets/0dc00925-b46a-471b-acd9-1787ac41e90a)
+![Screenshot 'Wonderfull Books' home page](https://github.com/user-attachments/assets/68b20a9b-7413-441a-b191-71c6881efe35)
+
 
 
 TECHNOLOGIES USED
