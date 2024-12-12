@@ -3,6 +3,13 @@ import '../scss/style.scss'
 import axios from 'axios';
 import { detailsContainer,title, detailsAuhtor, bookTrama, imgCover } from './details.js';
 
+const createDomElement = (tag, className, content) => {
+    const el = document.createElement(tag);
+    className.forEach(e => el.classList.add(e));
+    el.innerHTML = content;
+    return el;
+}
+
 
 //favicon
 const favicon = document.createElement('link');
@@ -11,35 +18,25 @@ favicon.href = '../src/img/favicon.png';
 document.head.appendChild(favicon)
 
 //home page
-const homePage = document.createElement('div');
-homePage.className = 'homePage-container';
 
+const homePage = createDomElement('div', ['homePage-container'], ' ');
 document.body.appendChild(homePage);
+
 //home page title
-const homePageTitle = document.createElement('h1');
-homePageTitle.className = '  homePage-title';
-homePageTitle.textContent = 'Wonderful Books';
+const homePageTitle = createDomElement('h1', ['homePage-title'], 'Wonderful Books');
 
 //search bar
-const homePageSearchBar = document.createElement('input');
-homePageSearchBar.classList = 'homePage-searchBar';
+const homePageSearchBar = createDomElement('input', ['homePage-searchBar'], '');
 homePageSearchBar.placeholder = 'Which story you want to know...';
-
 // submit button
-const homePageButton = document.createElement('button');
-homePageButton.className = 'btn btn-outline-success homePage-button';
-homePageButton.textContent = 'Search';
-
+const homePageButton = createDomElement('button', ['btn', 'btn-outline-success', 'homePage-button'], 'Search');
 //loading's icon
-const loading = document.createElement('div');
-loading.className = 'spinner-border text-success loading-spinner';
+const loading = createDomElement('div', ['spinner-border', 'text-success', 'loading-spinner'], ' ');
 homePage.append(homePageTitle, homePageSearchBar, homePageButton, loading)
 
 
-
 //books' cover container
-const coverBooksContainer = document.createElement('div');
-coverBooksContainer.className = 'container-fluid text-center coverBooks-container ';
+const coverBooksContainer = createDomElement('div', ['container-fluid', 'text-center', 'coverBooks-container'], ' ');
 document.body.appendChild(coverBooksContainer);
 
 
@@ -76,39 +73,28 @@ async function getBooks(){
             loading.style.display = 'none';
             coverBooksContainer.style.border= '1px solid #00853E';
            
-                
             //books'cover
-            const coverBooksImg = document.createElement('img');
-            coverBooksImg.className = 'card-img-top coverBook-img';
+            const coverBooksImg = createDomElement('img', ['card-img-top', 'coverBook-img'], ' ');
             coverBooksImg.src = book.cover;
+
             //title and author container
-            const cardBody = document.createElement('div');
-            cardBody.className = 'card-body';
+            const cardBody = createDomElement('div', ['card-body'], ' ');
             card.append(coverBooksImg, cardBody);
 
             //book's title
-            const bookTitle = document.createElement('h3');
-            bookTitle.className = 'card-title book-title';
-            bookTitle.textContent = book.title;
+             const bookTitle = createDomElement('h3', ['card-title', 'book-title'], book.title);
 
             //book's author
-            const bookAuthor = document.createElement('p');
-            bookAuthor.className = 'card-text book-author';
-            bookAuthor.textContent = book.author.slice(0, 3).join(', ')
+             const bookAuthor = createDomElement('p', ['card-text', 'book-author'], book.author.slice(0, 3).join(', '));
 
-            const detailsButton = document.createElement('button');
-            detailsButton.className = ' btn btn-outline-success details-button';
-            detailsButton.textContent = ' Details...';
+            //derails' button
+            const detailsButton = createDomElement('button', ['btn', 'btn-outline-success', 'details-button'], ' Details...');
             cardBody.append(bookTitle, bookAuthor, detailsButton)
             
             //details' book call
             detailsButton.addEventListener('click',async () =>{
-             const detailsPage = document.createElement('div');
-             detailsPage.className = ' card details-page ';
-
-             const closeButton = document.createElement('button');
-             closeButton.textContent = 'X';
-             closeButton.className = 'btn btn-outline-light  close-button ';
+            const detailsPage = createDomElement('div', ['card', 'details-page'], ' ');
+             const closeButton = createDomElement('button', ['btn', 'btn-outline-light', 'close-button'], 'X');
              detailsPage.append(closeButton, detailsContainer );
 
              imgCover.src = book.cover;
@@ -136,12 +122,34 @@ async function getBooks(){
     }catch(error){console.log(error)}
 };
 
-//books' call
-homePageButton.addEventListener('click', () =>{
-    getBooks();
-    loading.style.display = 'block';    
-})
 
+//var alert = document.getElementById('alert');
+const alert = createDomElement('div', ['alert', 'alert-danger'], 'Please enter a valid search term!');
+homePage.append(alert);
+alert.style.display = 'none';
+//alert and books' call 
+homePageButton.addEventListener('click', () =>{
+  alertMessage()
+})
+function alertMessage (){
+  if(homePageSearchBar.value ===''){
+    alert.style.display = 'block';
+    homePageSearchBar.style.border = '2px solid red';
+    loading.style.display = 'none';
+  }else{
+    alert.style.display = 'none';
+    homePageSearchBar.style.border = 'none';
+    loading.style.display = 'block'
+    getBooks();
+
+  }
+}
+
+
+
+
+
+      
 
 //trama's books call
 async function getTramaBook(bookKey){
@@ -161,4 +169,3 @@ async function getTramaBook(bookKey){
         return 'Error fetching book details'
     }
 }
-

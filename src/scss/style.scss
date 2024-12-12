@@ -7,7 +7,7 @@
     box-sizing: border-box;  
 }
 body{
-    background-image: url(../img/sfondo.jpg);
+    background-image: url(../img/sfondo.webp);
     background-repeat: no-repeat;
     background-size:cover;
     background-attachment: fixed;
@@ -57,6 +57,9 @@ $success:#00853E;
     .loading-spinner{
        margin-top: 40px;
        display: none;
+    }
+    .alert-danger{
+        margin-top: 50px;
     }
  
 }

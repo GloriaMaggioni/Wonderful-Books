@@ -13,6 +13,12 @@
   "devDependencies": {
     "css-loader": "^7.1.2",
     "html-webpack-plugin": "^5.6.3",
+    "image-minimizer-webpack-plugin": "^4.1.1",
+    "imagemin": "^9.0.0",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-jpegtran": "^8.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-svgo": "^11.0.1",
     "optimized-images-loader": "^0.4.0",
     "sass": "^1.81.0",
     "sass-loader": "^16.0.3",
