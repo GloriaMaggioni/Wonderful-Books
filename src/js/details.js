@@ -12,9 +12,12 @@ imgCover.className= 'img-cover';
 
 //book title
 export const title = document.createElement('h4');
+//book's author
 export const detailsAuhtor = document.createElement('p');
 
 //trama's book
 export const bookTrama = document.createElement('div');
 bookTrama.className = ' card-text book-trama';
 detailsContainer.append(imgCover,title,detailsAuhtor, bookTrama);
+
+

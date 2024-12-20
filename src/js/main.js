@@ -19,33 +19,34 @@ document.head.appendChild(favicon)
 
 //home page
 
-const homePage = createDomElement('div', ['homePage-container'], ' ');
+const homePage = createDomElement('div', ['homePage-container', 'container-fluid'], ' ');
 document.body.appendChild(homePage);
 
 //home page title
-const homePageTitle = createDomElement('h1', ['homePage-title'], 'Wonderful Books');
 
+const homePageTitle = createDomElement('h1', ['h1','homePage-title', ], 'Wonderful Books');
 //search bar
 const homePageSearchBar = createDomElement('input', ['homePage-searchBar'], '');
 homePageSearchBar.placeholder = 'Which story you want to know...';
 // submit button
 const homePageButton = createDomElement('button', ['btn', 'btn-outline-success', 'homePage-button'], 'Search');
+
 //loading's icon
 const loading = createDomElement('div', ['spinner-border', 'text-success', 'loading-spinner'], ' ');
 homePage.append(homePageTitle, homePageSearchBar, homePageButton, loading)
 
 
 //books' cover container
-const coverBooksContainer = createDomElement('div', ['container-fluid', 'text-center', 'coverBooks-container'], ' ');
+const coverBooksContainer = createDomElement('div', ['container', 'text-center', 'coverBooks-container'], ' ');
 document.body.appendChild(coverBooksContainer);
+
 
 
 
 //create card
 
 function createCard(){
-    const card = document.createElement('div');
-    card.className = 'card ';
+    const card = createDomElement('div', [ 'card'], '');
     coverBooksContainer.append(card);
     return card
 }
@@ -87,7 +88,7 @@ async function getBooks(){
             //book's author
              const bookAuthor = createDomElement('p', ['card-text', 'book-author'], book.author.slice(0, 3).join(', '));
 
-            //derails' button
+            //details' button
             const detailsButton = createDomElement('button', ['btn', 'btn-outline-success', 'details-button'], ' Details...');
             cardBody.append(bookTitle, bookAuthor, detailsButton)
             
@@ -107,7 +108,6 @@ async function getBooks(){
              }catch(e){
                 alert('Non sta funzionando');
              } ;
-
 
              closeButton.addEventListener('click', () =>{
                 detailsPage.style.display = 'none';
