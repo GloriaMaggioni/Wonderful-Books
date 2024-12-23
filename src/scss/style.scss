@@ -35,7 +35,6 @@ $success:#00853E;
        font-family: "Tourney", sans-serif;
         font-weight: 900;
         font-style: oblique;
-       // font-size:60px;
     }
     .homePage-searchBar{
         height: 30px;
@@ -46,7 +45,7 @@ $success:#00853E;
         border: 1px solid lightgrey; 
         font-family: "Fira Sans", sans-serif;
         font-weight: 400;
-       font-style: normal;
+        font-style: normal;
     }
     .homePage-button{
         margin-top: 30px;
@@ -107,7 +106,6 @@ $success:#00853E;
             justify-content: space-evenly;
 
             .book-title{
-              
                 margin-top: -5px;
                 font-size: medium;
                 width: fit-content;
@@ -116,7 +114,7 @@ $success:#00853E;
             .details-button{               
                 --bs-btn-font-size: .75rem;
                 width: fit-content;
-               margin-left: auto;
+                margin-left: auto;
                 font-family: "Tourney", sans-serif;
                 font-weight: 900;
              }
@@ -141,6 +139,8 @@ $success:#00853E;
     z-index: 200;
     padding: 15px;
     background-color: $success;
+    max-height: 95%;
+
 
    .close-button{
      width: fit-content;
@@ -166,6 +166,10 @@ $success:#00853E;
     }
     .book-trama{
        padding-left: 3px; 
+       max-height: 190px;
+       overflow-y: auto;
+       scrollbar-width: thin; 
+       scrollbar-color: #ffffff green;
     }
 }
 
@@ -188,12 +192,7 @@ $success:#00853E;
         max-height: 95%;
 
         .book-trama{
-            margin-top: 10px;
-            max-height: 190px;
-            overflow-y: auto;
-            scrollbar-width: thin; 
-            scrollbar-color: #ffffff #000000;
-           
+            margin-top: 10px;   
         }
     }
 }
@@ -246,4 +245,5 @@ $success:#00853E;
     .homePage-title{
         font-size: 60px;
     }
+    
 }
