@@ -98,9 +98,6 @@ class Book {
 }
 
 
-
-
-//POI FARE LA FETCH API
 async function getBooks(){
   let serachBooks = homePageSearchBar.value;
   coverBooksContainer.innerHTML = '';
